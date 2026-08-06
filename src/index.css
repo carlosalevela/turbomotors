@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Swiper theme overrides - red/black brand accent */
+.tm-hero .swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.6;
+}
+.tm-hero .swiper-pagination-bullet-active {
+  background: #dc2626;
+  opacity: 1;
+}
+@media (min-width: 640px) {
+  .tm-hero .swiper-pagination {
+    bottom: 92px !important;
+  }
+}
+
+.tm-categories .swiper-button-next,
+.tm-categories .swiper-button-prev,
+.tm-services .swiper-button-next,
+.tm-services .swiper-button-prev {
+  color: #171717;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.tm-categories .swiper-button-next::after,
+.tm-categories .swiper-button-prev::after,
+.tm-services .swiper-button-next::after,
+.tm-services .swiper-button-prev::after {
+  font-size: 16px;
+}
