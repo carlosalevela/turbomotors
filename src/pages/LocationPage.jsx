@@ -1,7 +1,13 @@
 import { SHOP_INFO } from '../config/shopInfo'
 import WhatsAppButton from '../components/WhatsAppButton'
+import usePageMeta from '../hooks/usePageMeta'
 
 export default function LocationPage() {
+  usePageMeta(
+    'Ubicación y Contacto',
+    `Visita nuestro taller en ${SHOP_INFO.address} o escríbenos por WhatsApp para cotizar el servicio de tu moto.`,
+  )
+
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8">
       <div>

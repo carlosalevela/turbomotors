@@ -4,8 +4,14 @@ import ServicesGrid from '../components/ServicesGrid'
 import WhyChooseUs from '../components/WhyChooseUs'
 import BookingForm from '../components/BookingForm'
 import HowItWorks from '../components/HowItWorks'
+import usePageMeta from '../hooks/usePageMeta'
 
 export default function HomePage() {
+  usePageMeta(
+    'Mecánica de Motos en Pasto, Nariño',
+    'Taller de mecánica de motos en Pasto, Nariño: cambio de aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general. Cotiza por WhatsApp con David Palacios.',
+  )
+
   return (
     <div className="flex flex-col">
       <Hero />

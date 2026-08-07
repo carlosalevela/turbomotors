@@ -1,10 +1,16 @@
 import { Link, useParams } from 'react-router-dom'
 import { SERVICES, CATEGORIES, formatCOP } from '../data/services'
 import WhatsAppButton from '../components/WhatsAppButton'
+import usePageMeta from '../hooks/usePageMeta'
 
 export default function ServiceDetailPage() {
   const { id } = useParams()
   const service = SERVICES.find((s) => String(s.id) === id)
+
+  usePageMeta(
+    service?.name ?? 'Servicio no encontrado',
+    service ? `${service.description} ${service.priceNote} ${formatCOP(service.price)}.` : undefined,
+  )
 
   if (!service) {
     return (

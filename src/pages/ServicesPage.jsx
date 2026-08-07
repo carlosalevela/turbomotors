@@ -3,8 +3,14 @@ import { useSearchParams } from 'react-router-dom'
 import { SERVICES } from '../data/services'
 import ServiceCard from '../components/ServiceCard'
 import CategoryFilter from '../components/CategoryFilter'
+import usePageMeta from '../hooks/usePageMeta'
 
 export default function ServicesPage() {
+  usePageMeta(
+    'Servicios de Mecánica para Motos',
+    'Cambio de aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general para tu moto en Pasto, Nariño. Precios y cotización por WhatsApp.',
+  )
+
   const [searchParams, setSearchParams] = useSearchParams()
   const [category, setCategory] = useState(searchParams.get('categoria'))
 

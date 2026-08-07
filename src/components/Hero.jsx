@@ -9,6 +9,7 @@ import 'swiper/css/pagination'
 const SLIDES = [
   {
     image: REAL_PHOTOS.mantenimientoDesarmada,
+    alt: 'David Palacios, mecánico de Turbo Motors, revisando la suspensión de una moto en el taller',
     eyebrow: `Bienvenido a ${SHOP_INFO.name}`,
     title: 'Mecánica de motos',
     highlight: 'en la que confías',
@@ -16,6 +17,7 @@ const SLIDES = [
   },
   {
     image: REAL_PHOTOS.frenosLiquido,
+    alt: 'Revisión del líquido de frenos de una moto en Turbo Motors',
     eyebrow: 'Frenos',
     title: 'Revisión y cambio',
     highlight: 'de frenos',
@@ -23,6 +25,7 @@ const SLIDES = [
   },
   {
     image: REAL_PHOTOS.kitArrastreDespues,
+    alt: 'Kit de arrastre (cadena y piñón) nuevo instalado en una moto Suzuki GN125',
     eyebrow: 'Motor',
     title: 'Cambio de kit',
     highlight: 'de arrastre',
@@ -71,7 +74,7 @@ export default function Hero() {
             <div className="relative flex h-[520px] items-center overflow-hidden bg-neutral-950 sm:h-[600px]">
               <img
                 src={slide.image}
-                alt=""
+                alt={slide.alt}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-black/20" />
