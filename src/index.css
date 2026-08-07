@@ -4,3 +4,13 @@ body {
   margin: 0;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
 }
+
+/* Swiper theme overrides - red/black brand accent */
+.tm-hero .swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.6;
+}
+.tm-hero .swiper-pagination-bullet-active {
+  background: #dc2626;
+  opacity: 1;
+}
