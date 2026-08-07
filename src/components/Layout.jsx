@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { SHOP_INFO, buildWhatsAppUrl } from '../config/shopInfo'
 import { CATEGORIES } from '../data/services'
+import logo from '../assets/logo.jpg'
 
 const NAV_LINKS = [
   { to: '/', label: 'Inicio' },
@@ -22,11 +23,7 @@ export default function Layout() {
             onClick={() => setMenuOpen(false)}
             className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-neutral-950"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-950 text-white">
-              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-                <path d="M7 17a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM5 16H3v-3l2-4h6l3 3h3a2 2 0 0 1 2 2v2h-2a3 3 0 0 0-6 0H9a3 3 0 0 0-4 0Zm2-6-1.2 2.4H10L8 10H7Z" />
-              </svg>
-            </span>
+            <img src={logo} alt="Turbo Motors" className="h-9 w-9 rounded-full object-cover" />
             Turbo Motors
           </Link>
 
@@ -115,7 +112,10 @@ export default function Layout() {
       <footer className="bg-neutral-950 text-neutral-400">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-12 sm:grid-cols-4">
           <div className="col-span-2 sm:col-span-1">
-            <div className="text-lg font-extrabold tracking-tight text-white">Turbo Motors</div>
+            <div className="flex items-center gap-2">
+              <img src={logo} alt="Turbo Motors" className="h-8 w-8 rounded-full object-cover" />
+              <span className="text-lg font-extrabold tracking-tight text-white">Turbo Motors</span>
+            </div>
             <p className="mt-2 text-sm">Mecánica de motos de confianza.</p>
           </div>
 
