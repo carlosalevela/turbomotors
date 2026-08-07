@@ -1,24 +1,37 @@
 // Datos de ejemplo — mismo formato que usará la futura API real,
 // así que reemplazarlos por datos reales o un fetch() no requiere tocar los componentes.
 
+import kitArrastreAntes from '../assets/work/kit-arrastre-antes.jpeg'
+import kitArrastreDespues from '../assets/work/kit-arrastre-despues.jpeg'
+import frenosLiquido from '../assets/work/frenos-liquido.jpeg'
+import mantenimientoDesarmada from '../assets/work/mantenimiento-desarmada.jpeg'
+
 function unsplash(id, params = 'w=1200&q=80&auto=format&fit=crop') {
   return `https://images.unsplash.com/${id}?${params}`
 }
 
-// Fotos de stock (Unsplash, uso libre) — reemplazar por fotos reales del taller cuando se tengan.
+// Fotos de stock (Unsplash, uso libre) — se usan solo donde todavía no hay foto real del taller.
 export const STOCK_PHOTOS = {
   heroMechanic: unsplash('photo-1623220988124-bcd1bad9a408', 'w=1800&q=80&auto=format&fit=crop'),
   engine: unsplash('photo-1534755563369-ad37931ac77b'),
   brake: unsplash('photo-1696494561430-de087dd0bd69'),
 }
 
+// Fotos reales de trabajos de Turbo Motors (David Palacios).
+export const REAL_PHOTOS = {
+  kitArrastreAntes,
+  kitArrastreDespues,
+  frenosLiquido,
+  mantenimientoDesarmada,
+}
+
 export const CATEGORIES = [
   { value: 'ACEITE', label: 'Cambio de aceite', image: STOCK_PHOTOS.engine },
-  { value: 'FRENOS', label: 'Frenos', image: STOCK_PHOTOS.brake },
-  { value: 'MOTOR', label: 'Motor', image: STOCK_PHOTOS.engine },
+  { value: 'FRENOS', label: 'Frenos', image: REAL_PHOTOS.frenosLiquido },
+  { value: 'MOTOR', label: 'Motor', image: REAL_PHOTOS.kitArrastreDespues },
   { value: 'SUSPENSION', label: 'Suspensión', image: STOCK_PHOTOS.heroMechanic },
   { value: 'ELECTRICO', label: 'Sistema eléctrico', image: STOCK_PHOTOS.brake },
-  { value: 'MANTENIMIENTO', label: 'Mantenimiento general', image: STOCK_PHOTOS.heroMechanic },
+  { value: 'MANTENIMIENTO', label: 'Mantenimiento general', image: REAL_PHOTOS.mantenimientoDesarmada },
 ]
 
 function placeholder(text, bg, fg) {
@@ -69,7 +82,7 @@ export const SERVICES = [
     category: 'FRENOS',
     price: 40000,
     priceNote: 'Desde',
-    imageUrl: placeholder('Purga de Frenos', 'fee2e2', '7f1d1d'),
+    imageUrl: REAL_PHOTOS.frenosLiquido,
   },
   {
     id: 6,
@@ -87,7 +100,8 @@ export const SERVICES = [
     category: 'MOTOR',
     price: 180000,
     priceNote: 'Desde',
-    imageUrl: placeholder('Cadena y Pinoneria', 'fee2e2', '7f1d1d'),
+    imageUrl: REAL_PHOTOS.kitArrastreDespues,
+    beforeImageUrl: REAL_PHOTOS.kitArrastreAntes,
   },
   {
     id: 8,
@@ -132,7 +146,7 @@ export const SERVICES = [
     category: 'MANTENIMIENTO',
     price: 90000,
     priceNote: 'Desde',
-    imageUrl: placeholder('Mantenimiento General', 'fee2e2', '7f1d1d'),
+    imageUrl: REAL_PHOTOS.mantenimientoDesarmada,
   },
 ]
 

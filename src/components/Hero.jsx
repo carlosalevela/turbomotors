@@ -1,14 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay } from 'swiper/modules'
 import { Link } from 'react-router-dom'
-import { STOCK_PHOTOS, CATEGORIES } from '../data/services'
+import { REAL_PHOTOS, CATEGORIES } from '../data/services'
 import { SHOP_INFO } from '../config/shopInfo'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
 const SLIDES = [
   {
-    image: STOCK_PHOTOS.heroMechanic,
+    image: REAL_PHOTOS.mantenimientoDesarmada,
     eyebrow: `Bienvenido a ${SHOP_INFO.name}`,
     title: 'Mecánica de motos en la que puedes confiar',
     subtitle: 'Cambios de aceite, frenos, motor y mantenimiento general con atención honesta.',
@@ -16,7 +16,7 @@ const SLIDES = [
     ctaTo: '/servicios',
   },
   {
-    image: STOCK_PHOTOS.brake,
+    image: REAL_PHOTOS.frenosLiquido,
     eyebrow: 'Frenos',
     title: 'Revisión y cambio de frenos',
     subtitle: 'Pastillas, discos y purga del sistema para que frenes con seguridad.',
@@ -24,10 +24,10 @@ const SLIDES = [
     ctaTo: '/servicios?categoria=FRENOS',
   },
   {
-    image: STOCK_PHOTOS.engine,
+    image: REAL_PHOTOS.kitArrastreDespues,
     eyebrow: 'Motor',
-    title: 'Diagnóstico y ajuste de motor',
-    subtitle: 'Revisamos a fondo para que tu moto rinda como el primer día.',
+    title: 'Cambio de kit de arrastre',
+    subtitle: 'Cadena, piñón y corona nuevos para que tu moto rinda como el primer día.',
     ctaLabel: 'Ver motor',
     ctaTo: '/servicios?categoria=MOTOR',
   },

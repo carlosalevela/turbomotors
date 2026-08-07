@@ -3,7 +3,7 @@ import Hero from '../components/Hero'
 import CategoryCarousel from '../components/CategoryCarousel'
 import FeaturedServices from '../components/FeaturedServices'
 import WhatsAppButton from '../components/WhatsAppButton'
-import { STOCK_PHOTOS } from '../data/services'
+import { REAL_PHOTOS } from '../data/services'
 import { SHOP_INFO } from '../config/shopInfo'
 
 export default function HomePage() {
@@ -33,7 +33,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 md:grid-cols-2">
           <div className="overflow-hidden rounded-xl">
             <img
-              src={STOCK_PHOTOS.heroMechanic}
+              src={REAL_PHOTOS.kitArrastreAntes}
               alt="Taller Turbo Motors"
               className="h-full w-full object-cover"
             />

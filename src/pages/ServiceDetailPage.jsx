@@ -25,9 +25,34 @@ export default function ServiceDetailPage() {
         ← Volver a servicios
       </Link>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-neutral-100">
-          <img src={service.imageUrl} alt={service.name} className="h-full w-full object-cover" />
-        </div>
+        {service.beforeImageUrl ? (
+          <div className="grid grid-cols-2 gap-2">
+            <div className="flex h-full flex-col overflow-hidden rounded-xl bg-neutral-100">
+              <img
+                src={service.beforeImageUrl}
+                alt={`${service.name} - antes`}
+                className="aspect-square min-h-0 flex-1 object-cover"
+              />
+              <p className="shrink-0 bg-neutral-900 py-1 text-center text-xs font-semibold text-white uppercase">
+                Antes
+              </p>
+            </div>
+            <div className="flex h-full flex-col overflow-hidden rounded-xl bg-neutral-100">
+              <img
+                src={service.imageUrl}
+                alt={`${service.name} - después`}
+                className="aspect-square min-h-0 flex-1 object-cover"
+              />
+              <p className="shrink-0 bg-red-600 py-1 text-center text-xs font-semibold text-white uppercase">
+                Después
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="overflow-hidden rounded-xl bg-neutral-100">
+            <img src={service.imageUrl} alt={service.name} className="h-full w-full object-cover" />
+          </div>
+        )}
         <div className="flex flex-col gap-4">
           <div>
             <span className="text-xs font-medium tracking-wide text-red-600 uppercase">
