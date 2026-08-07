@@ -5,6 +5,7 @@ export const SHOP_INFO = {
   address: 'Carrera 10 Este, El Triunfo, Pasto, Nariño, Colombia',
   mapEmbedUrl:
     'https://www.google.com/maps?q=1.191361,-77.263806&output=embed',
+  directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=1.191361,-77.263806',
   hours: 'Lunes a sábado: 8:00 a.m. – 6:00 p.m.',
 }
 

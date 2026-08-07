@@ -15,6 +15,7 @@ export const STOCK_PHOTOS = {
   heroMechanic: unsplash('photo-1623220988124-bcd1bad9a408', 'w=1800&q=80&auto=format&fit=crop'),
   engine: unsplash('photo-1534755563369-ad37931ac77b'),
   brake: unsplash('photo-1696494561430-de087dd0bd69'),
+  electrico: unsplash('photo-1777042510267-2c0543a0d715'),
 }
 
 // Fotos reales de trabajos de Turbo Motors (David Palacios).
@@ -30,7 +31,7 @@ export const CATEGORIES = [
   { value: 'FRENOS', label: 'Frenos', image: REAL_PHOTOS.frenosLiquido },
   { value: 'MOTOR', label: 'Motor', image: REAL_PHOTOS.kitArrastreDespues },
   { value: 'SUSPENSION', label: 'Suspensión', image: STOCK_PHOTOS.heroMechanic },
-  { value: 'ELECTRICO', label: 'Sistema eléctrico', image: STOCK_PHOTOS.brake },
+  { value: 'ELECTRICO', label: 'Sistema eléctrico', image: STOCK_PHOTOS.electrico },
   { value: 'MANTENIMIENTO', label: 'Mantenimiento general', image: REAL_PHOTOS.mantenimientoDesarmada },
 ]
 
@@ -128,7 +129,7 @@ export const SERVICES = [
     category: 'ELECTRICO',
     price: 35000,
     priceNote: 'Desde',
-    imageUrl: placeholder('Diagnostico Electrico', 'fee2e2', '7f1d1d'),
+    imageUrl: STOCK_PHOTOS.electrico,
   },
   {
     id: 11,
