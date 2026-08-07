@@ -1,11 +1,10 @@
-// TODO: reemplazar la direccion por la real cuando la tengan — hoy es un ejemplo (placeholder).
 export const SHOP_INFO = {
   name: 'Turbo Motors',
   mechanic: 'David Palacios',
   whatsappNumber: '573008049620', // formato: código país + número, sin + ni espacios
-  address: 'Dirección por confirmar, Pasto, Nariño, Colombia',
+  address: 'Carrera 10 Este, El Triunfo, Pasto, Nariño, Colombia',
   mapEmbedUrl:
-    'https://www.google.com/maps?q=Pasto,+Nari%C3%B1o,+Colombia&output=embed',
+    'https://www.google.com/maps?q=1.191361,-77.263806&output=embed',
   hours: 'Lunes a sábado: 8:00 a.m. – 6:00 p.m.',
 }
 
