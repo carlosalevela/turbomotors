@@ -11,7 +11,7 @@ const SLIDES = [
     image: REAL_PHOTOS.mantenimientoDesarmada,
     alt: 'David Palacios, mecánico de Turbo Motors, revisando la suspensión de una moto en el taller',
     eyebrow: `Bienvenido a ${SHOP_INFO.name}`,
-    title: 'Mecánica de motos',
+    title: 'Mecánica de motos en Pasto',
     highlight: 'en la que confías',
     subtitle: 'Cambios de aceite, frenos, motor, suspensión y mantenimiento general con atención directa y honesta.',
   },
@@ -69,7 +69,9 @@ export default function Hero() {
         autoplay={{ delay: 5500, disableOnInteraction: false }}
         className="tm-hero w-full min-w-0"
       >
-        {SLIDES.map((slide) => (
+        {SLIDES.map((slide, index) => {
+          const HeadingTag = index === 0 ? 'h1' : 'h2'
+          return (
           <SwiperSlide key={slide.title}>
             <div className="relative flex h-[520px] items-center overflow-hidden bg-neutral-950 sm:h-[600px]">
               <img
@@ -83,11 +85,11 @@ export default function Hero() {
                   <span className="text-sm font-semibold tracking-wide text-red-400 uppercase">
                     {slide.eyebrow}
                   </span>
-                  <h1 className="mt-2 text-4xl leading-tight font-extrabold text-white sm:text-5xl">
+                  <HeadingTag className="mt-2 text-4xl leading-tight font-extrabold text-white sm:text-5xl">
                     {slide.title}
                     <br />
                     <span className="text-red-500">{slide.highlight}</span>
-                  </h1>
+                  </HeadingTag>
                   <p className="mt-4 max-w-md text-base text-neutral-200 sm:text-lg">
                     {slide.subtitle}
                   </p>
@@ -111,7 +113,8 @@ export default function Hero() {
               </div>
             </div>
           </SwiperSlide>
-        ))}
+          )
+        })}
       </Swiper>
 
       <div className="bg-neutral-900">

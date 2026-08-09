@@ -8,8 +8,10 @@ export default function ServiceDetailPage() {
   const service = SERVICES.find((s) => String(s.id) === id)
 
   usePageMeta(
-    service?.name ?? 'Servicio no encontrado',
-    service ? `${service.description} ${service.priceNote} ${formatCOP(service.price)}.` : undefined,
+    service ? `${service.name} en Pasto` : 'Servicio no encontrado',
+    service
+      ? `${service.description} ${service.priceNote} ${formatCOP(service.price)} en Turbo Motors, taller de motos en Pasto, Nariño.`
+      : undefined,
   )
 
   if (!service) {

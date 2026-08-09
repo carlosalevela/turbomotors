@@ -117,6 +117,32 @@ export default function Layout() {
               <span className="text-lg font-extrabold tracking-tight text-white">Turbo Motors</span>
             </div>
             <p className="mt-2 text-sm">Mecánica de motos de confianza.</p>
+            <div className="mt-4 flex gap-3">
+              <a
+                href={SHOP_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram de Turbo Motors"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-800 text-neutral-400 transition hover:border-neutral-600 hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" className="h-4.5 w-4.5 stroke-current" fill="none" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+              <a
+                href={SHOP_INFO.tiktokUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok de Turbo Motors"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-800 text-neutral-400 transition hover:border-neutral-600 hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" className="h-4.5 w-4.5 fill-current">
+                  <path d="M16.5 3c.4 2.1 1.8 3.6 4 3.9v2.6c-1.4 0-2.7-.4-4-1.2v6.4c0 3.1-2.5 5.3-5.3 5.3S5.9 17.8 5.9 14.7c0-3 2.4-5.3 5.4-5.3.4 0 .8 0 1.1.1v2.7c-.3-.1-.7-.2-1.1-.2-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.8-1.1 2.8-2.7V3h2.4Z" />
+                </svg>
+              </a>
+            </div>
           </div>
 
           <div>

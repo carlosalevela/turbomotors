@@ -27,12 +27,48 @@ export const REAL_PHOTOS = {
 }
 
 export const CATEGORIES = [
-  { value: 'ACEITE', label: 'Cambio de aceite', image: STOCK_PHOTOS.engine },
-  { value: 'FRENOS', label: 'Frenos', image: REAL_PHOTOS.frenosLiquido },
-  { value: 'MOTOR', label: 'Motor', image: REAL_PHOTOS.kitArrastreDespues },
-  { value: 'SUSPENSION', label: 'Suspensión', image: STOCK_PHOTOS.heroMechanic },
-  { value: 'ELECTRICO', label: 'Sistema eléctrico', image: STOCK_PHOTOS.electrico },
-  { value: 'MANTENIMIENTO', label: 'Mantenimiento general', image: REAL_PHOTOS.mantenimientoDesarmada },
+  {
+    value: 'ACEITE',
+    label: 'Cambio de aceite',
+    image: STOCK_PHOTOS.engine,
+    seoDescription:
+      'Cambio de aceite y filtro para tu moto en Pasto, Nariño. Aceite mineral o sintético con revisión de niveles incluida.',
+  },
+  {
+    value: 'FRENOS',
+    label: 'Frenos',
+    image: REAL_PHOTOS.frenosLiquido,
+    seoDescription:
+      'Servicio de frenos para motos en Pasto: pastillas, discos y purga del sistema hidráulico con repuestos de calidad.',
+  },
+  {
+    value: 'MOTOR',
+    label: 'Motor',
+    image: REAL_PHOTOS.kitArrastreDespues,
+    seoDescription:
+      'Revisión y reparación de motor para motos en Pasto: diagnóstico, ajustes y cambio de kit de arrastre (cadena y piñonería).',
+  },
+  {
+    value: 'SUSPENSION',
+    label: 'Suspensión',
+    image: STOCK_PHOTOS.heroMechanic,
+    seoDescription:
+      'Revisión y cambio de suspensión para motos en Pasto: amortiguadores, horquilla y ajuste de precarga.',
+  },
+  {
+    value: 'ELECTRICO',
+    label: 'Sistema eléctrico',
+    image: STOCK_PHOTOS.electrico,
+    seoDescription:
+      'Servicio eléctrico para motos en Pasto: diagnóstico de batería, luces, pito y sistema de carga.',
+  },
+  {
+    value: 'MANTENIMIENTO',
+    label: 'Mantenimiento general',
+    image: REAL_PHOTOS.mantenimientoDesarmada,
+    seoDescription:
+      'Mantenimiento general preventivo para motos en Pasto: aceite, frenos, cadena, luces y niveles en una sola revisión.',
+  },
 ]
 
 function placeholder(text, bg, fg) {

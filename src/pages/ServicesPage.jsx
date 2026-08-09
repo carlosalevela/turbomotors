@@ -1,18 +1,22 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { SERVICES } from '../data/services'
+import { CATEGORIES, SERVICES } from '../data/services'
 import ServiceCard from '../components/ServiceCard'
 import CategoryFilter from '../components/CategoryFilter'
 import usePageMeta from '../hooks/usePageMeta'
 
 export default function ServicesPage() {
-  usePageMeta(
-    'Servicios de Mecánica para Motos',
-    'Cambio de aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general para tu moto en Pasto, Nariño. Precios y cotización por WhatsApp.',
-  )
-
   const [searchParams, setSearchParams] = useSearchParams()
   const [category, setCategory] = useState(searchParams.get('categoria'))
+
+  const activeCategory = category ? CATEGORIES.find((c) => c.value === category) : null
+
+  usePageMeta(
+    activeCategory ? `${activeCategory.label} para Motos en Pasto` : 'Servicios de Mecánica para Motos',
+    activeCategory
+      ? activeCategory.seoDescription
+      : 'Cambio de aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general para tu moto en Pasto, Nariño. Precios y cotización por WhatsApp.',
+  )
 
   const handleChange = (value) => {
     setCategory(value)
@@ -27,9 +31,13 @@ export default function ServicesPage() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8">
       <div>
-        <h1 className="text-2xl font-bold text-neutral-900">Servicios</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">
+          {activeCategory ? `${activeCategory.label} para motos en Pasto` : 'Servicios de mecánica para motos en Pasto'}
+        </h1>
         <p className="mt-1 text-neutral-600">
-          Aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general.
+          {activeCategory
+            ? activeCategory.seoDescription
+            : 'Aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general.'}
         </p>
       </div>
 
