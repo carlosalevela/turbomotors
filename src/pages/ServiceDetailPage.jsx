@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { SERVICES, CATEGORIES, formatCOP } from '../data/services'
 import WhatsAppButton from '../components/WhatsAppButton'
@@ -13,6 +14,39 @@ export default function ServiceDetailPage() {
       ? `${service.description} ${service.priceNote} ${formatCOP(service.price)} en Turbo Motors, taller de motos en Pasto, Nariño.`
       : undefined,
   )
+
+  useEffect(() => {
+    if (!service) return undefined
+
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: service.name,
+      description: service.description,
+      provider: {
+        '@type': 'AutoRepair',
+        name: 'Turbo Motors',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Carrera 10 Este, El Triunfo',
+          addressLocality: 'Pasto',
+          addressRegion: 'Nariño',
+          addressCountry: 'CO',
+        },
+      },
+      areaServed: 'Pasto, Nariño, Colombia',
+      offers: {
+        '@type': 'Offer',
+        price: service.price,
+        priceCurrency: 'COP',
+      },
+    })
+    document.head.appendChild(script)
+
+    return () => script.remove()
+  }, [service])
 
   if (!service) {
     return (
