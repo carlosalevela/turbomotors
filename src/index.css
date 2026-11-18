@@ -53,6 +53,16 @@ body {
     inset 8px 8px 14px rgb(var(--luz) / 0.9);
 }
 
+/* Superficie de arcilla (sin tamaño ni bordes) como utilidad, para usarla solo en ciertas pantallas. */
+@utility clay-surface {
+  background: var(--superficie);
+  box-shadow:
+    10px 12px 24px rgb(var(--sombra) / 0.16),
+    -8px -8px 18px rgb(var(--luz) / 0.85),
+    inset -6px -8px 12px rgb(var(--sombra) / 0.07),
+    inset 6px 6px 10px rgb(var(--luz) / 0.9);
+}
+
 /* Caja de arcilla grande como utilidad, para poder usarla solo en ciertas pantallas (ej. sm:clay-box). */
 @utility clay-box {
   background: var(--superficie);
@@ -90,6 +100,23 @@ body {
     12px 14px 28px rgb(var(--sombra) / 0.35),
     inset -6px -8px 14px rgb(90 8 4 / 0.35),
     inset 6px 6px 12px rgb(255 190 180 / 0.25);
+}
+
+/* En celular, sombras externas más cortas para que los botones grandes no se vean pesados. */
+@media (max-width: 639px) {
+  .clay-soft-mobile.clay-red {
+    box-shadow:
+      5px 7px 14px rgb(225 52 44 / 0.3),
+      inset -4px -6px 10px rgb(var(--accion-sombra) / 0.35),
+      inset 4px 4px 8px rgb(var(--accion-brillo) / 0.55);
+  }
+  .clay-soft-mobile.clay {
+    box-shadow:
+      6px 8px 16px rgb(var(--sombra) / 0.14),
+      -5px -5px 12px rgb(var(--luz) / 0.85),
+      inset -4px -6px 10px rgb(var(--sombra) / 0.06),
+      inset 4px 4px 8px rgb(var(--luz) / 0.9);
+  }
 }
 
 /* Hundido: se usa cuando algo está seleccionado (servicio agregado, filtro activo). */
@@ -147,8 +174,10 @@ body {
 
 /* Fila de filtros con scroll horizontal: margen extra para que no se corten las sombras. */
 .clay-scroll-row {
-  margin-inline: -1rem;
-  padding: 0.5rem 1rem 1.25rem;
+  /* Se sale 1rem a cada lado (para llegar al borde de la pantalla) y deja aire arriba/abajo
+     para que las sombras de arcilla no se corten. */
+  margin: -1rem -1rem -0.75rem;
+  padding: 1.5rem 1rem 2rem;
   scrollbar-width: none;
 }
 .clay-scroll-row::-webkit-scrollbar {

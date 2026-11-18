@@ -7,6 +7,8 @@ import QuoteTicket from '../components/QuoteTicket'
 import TikTokSection from '../components/TikTokSection'
 import { MoreLink, WhatsAppIcon } from '../components/ui'
 import usePageMeta from '../hooks/usePageMeta'
+import useIsMobile from '../hooks/useIsMobile'
+import MobileHome from '../components/MobileHome'
 
 // Los más pedidos: aceite y filtro, pastillas, kit de arrastre, mantenimiento general.
 const FEATURED_IDS = [1, 3, 7, 12]
@@ -18,6 +20,10 @@ export default function HomePage() {
   )
 
   const featured = FEATURED_IDS.map((id) => SERVICES.find((s) => s.id === id))
+  const isMobile = useIsMobile()
+
+  // En celular va un inicio compacto tipo app; en pantallas grandes, el diseño completo.
+  if (isMobile) return <MobileHome />
 
   return (
     <>
@@ -35,15 +41,18 @@ export default function HomePage() {
             Taller de mecánica de motos en Pasto. Elige lo que necesita tu moto y te respondemos por WhatsApp con el
             precio.
           </p>
-          <div className="mt-6 flex gap-3 sm:mt-8">
-            <Link to="/servicios" className="clay-btn clay-red px-6 py-3.5 sm:px-7 sm:py-4">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:flex">
+            <Link
+              to="/servicios"
+              className="clay-btn clay-red clay-soft-mobile flex items-center justify-center px-4 py-3 text-[15px] sm:px-7 sm:py-4 sm:text-base"
+            >
               Ver servicios
             </Link>
             <a
               href={buildWhatsAppUrl('Hola, quiero cotizar un servicio para mi moto')}
               target="_blank"
               rel="noopener noreferrer"
-              className="clay-btn clay flex items-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4"
+              className="clay-btn clay clay-soft-mobile flex items-center justify-center gap-2 px-4 py-3 text-[15px] sm:px-7 sm:py-4 sm:text-base"
             >
               <WhatsAppIcon className="h-4.5 w-4.5 text-[var(--verde)]" />
               <span className="sm:hidden">WhatsApp</span>

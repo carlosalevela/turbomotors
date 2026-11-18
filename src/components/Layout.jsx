@@ -75,10 +75,14 @@ export default function Layout() {
   return (
     <div className="clay-page flex flex-col pb-28 sm:pb-12">
       <header className="sticky top-3 z-40 px-3">
-        <div className="clay mx-auto flex max-w-6xl items-center justify-between gap-2 rounded-full py-2 pr-2 pl-2 sm:pl-3">
-          <Link to="/" className="flex shrink-0 items-center gap-2">
-            <img src={logo} alt="" className="h-9 w-9 rounded-full object-cover" />
-            <span className="clay-display text-lg">Turbo Motors</span>
+        {/* En celular: piezas sueltas (píldora del logo + carrito). Desde sm: una sola barra con el menú. */}
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 sm:clay-surface sm:rounded-full sm:py-2 sm:pr-2 sm:pl-3">
+          <Link
+            to="/"
+            className="flex shrink-0 items-center gap-2 max-sm:clay-surface max-sm:rounded-full max-sm:py-1.5 max-sm:pr-4 max-sm:pl-1.5"
+          >
+            <img src={logo} alt="" className="h-8 w-8 rounded-full object-cover sm:h-9 sm:w-9" />
+            <span className="clay-display text-base sm:text-lg">Turbo Motors</span>
           </Link>
           <div className="flex items-center gap-1">
             <nav className="hidden gap-1 font-semibold sm:flex">
