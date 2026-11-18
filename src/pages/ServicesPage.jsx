@@ -1,59 +1,58 @@
-import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { CATEGORIES, SERVICES } from '../data/services'
 import ServiceCard from '../components/ServiceCard'
-import CategoryFilter from '../components/CategoryFilter'
+import { PageTitle } from '../components/ui'
 import usePageMeta from '../hooks/usePageMeta'
 
 export default function ServicesPage() {
+  // La categoría va en la URL (?categoria=FRENOS) para que cada filtro tenga su propio enlace y metadatos.
   const [searchParams, setSearchParams] = useSearchParams()
-  const [category, setCategory] = useState(searchParams.get('categoria'))
-
-  const activeCategory = category ? CATEGORIES.find((c) => c.value === category) : null
+  const category = searchParams.get('categoria')
+  const activeCategory = CATEGORIES.find((c) => c.value === category) ?? null
 
   usePageMeta(
     activeCategory ? `${activeCategory.label} para Motos en Pasto` : 'Servicios de Mecánica para Motos',
     activeCategory
       ? activeCategory.seoDescription
-      : 'Cambio de aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general para tu moto en Pasto, Nariño. Precios y cotización por WhatsApp.',
+      : 'Cambio de aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general para tu moto en Pasto, Nariño. Cotización por WhatsApp.',
   )
 
-  const handleChange = (value) => {
-    setCategory(value)
-    setSearchParams(value ? { categoria: value } : {})
-  }
-
-  const filtered = useMemo(
-    () => (category ? SERVICES.filter((s) => s.category === category) : SERVICES),
-    [category],
-  )
+  const visible = activeCategory ? SERVICES.filter((s) => s.category === activeCategory.value) : SERVICES
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8">
-      <div>
-        <h1 className="text-2xl font-bold text-neutral-900">
-          {activeCategory ? `${activeCategory.label} para motos en Pasto` : 'Servicios de mecánica para motos en Pasto'}
-        </h1>
-        <p className="mt-1 text-neutral-600">
-          {activeCategory
-            ? activeCategory.seoDescription
-            : 'Aceite, frenos, motor, suspensión, sistema eléctrico y mantenimiento general.'}
-        </p>
-      </div>
+    <>
+      <PageTitle title={activeCategory ? activeCategory.label : 'Servicios'}>
+        {activeCategory
+          ? activeCategory.seoDescription
+          : 'Agrega los que necesites y envíalos todos en un solo mensaje por WhatsApp.'}
+      </PageTitle>
 
-      <CategoryFilter selected={category} onChange={handleChange} />
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="clay-scroll-row flex gap-3 overflow-x-auto">
+          {[{ value: null, label: 'Todos' }, ...CATEGORIES].map((cat) => {
+            const active = (activeCategory?.value ?? null) === cat.value
+            return (
+              <button
+                key={cat.label}
+                type="button"
+                onClick={() => setSearchParams(cat.value ? { categoria: cat.value } : {}, { replace: true })}
+                aria-pressed={active}
+                className={`clay-btn shrink-0 px-5 py-2.5 text-sm ${
+                  active ? 'clay-pressed clay-accion-text' : 'clay'
+                }`}
+              >
+                {cat.label}
+              </button>
+            )
+          })}
+        </div>
 
-      {filtered.length === 0 ? (
-        <p className="py-12 text-center text-neutral-500">
-          No hay servicios en esta categoría por ahora.
-        </p>
-      ) : (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((s) => (
+            <ServiceCard key={s.id} service={s} />
           ))}
         </div>
-      )}
-    </div>
+      </section>
+    </>
   )
 }

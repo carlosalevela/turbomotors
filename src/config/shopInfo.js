@@ -1,6 +1,5 @@
 export const SHOP_INFO = {
   name: 'Turbo Motors',
-  mechanic: 'David Palacios',
   whatsappNumber: '573008049620', // formato: código país + número, sin + ni espacios
   address: 'Carrera 10 Este, El Triunfo, Pasto, Nariño, Colombia',
   mapEmbedUrl:

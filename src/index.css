@@ -1,16 +1,175 @@
 @import "tailwindcss";
 
+/* Estilo "clay" (claymorphism) de Turbo Motors. */
+
 body {
   margin: 0;
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  background: #f3e4e1;
 }
 
-/* Swiper theme overrides - red/black brand accent */
-.tm-hero .swiper-pagination-bullet {
-  background: #fff;
-  opacity: 0.6;
+/* Paleta monocromática roja (arcilla / ladrillo). Los colores salen de variables. */
+.clay-page {
+  --fondo: #f3e4e1;
+  --superficie: #fbf1ef;
+  --hundido: #ebd6d2;
+  --accion: #e1342c;
+  --texto: #3b1412;
+  --texto-suave: #7a4a45;
+  --oscuro: #6e1813;
+  --verde: #22b35e;
+  --sombra: 120 40 32; /* rgb del color de las sombras */
+  --luz: 255 248 246; /* rgb de los brillos */
+  --accion-sombra: 110 10 6;
+  --accion-brillo: 255 175 165;
+
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: 'Figtree', system-ui, sans-serif;
+  min-height: 100vh;
 }
-.tm-hero .swiper-pagination-bullet-active {
-  background: #dc2626;
-  opacity: 1;
+
+.clay-display {
+  font-family: 'Bricolage Grotesque', 'Figtree', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.clay-muted {
+  color: var(--texto-suave);
+}
+.clay-accion-text {
+  color: var(--accion);
+}
+
+/* Superficie de arcilla: sombra externa suave + luz y sombra internas que la "inflan". */
+.clay {
+  background: var(--superficie);
+  border-radius: 32px;
+  box-shadow:
+    14px 16px 32px rgb(var(--sombra) / 0.16),
+    -10px -10px 24px rgb(var(--luz) / 0.85),
+    inset -8px -10px 16px rgb(var(--sombra) / 0.07),
+    inset 8px 8px 14px rgb(var(--luz) / 0.9);
+}
+
+.clay-red {
+  background: var(--accion);
+  color: #fff;
+  box-shadow:
+    10px 14px 26px rgb(225 52 44 / 0.35),
+    inset -6px -8px 14px rgb(var(--accion-sombra) / 0.35),
+    inset 6px 6px 12px rgb(var(--accion-brillo) / 0.55);
+}
+
+.clay-green {
+  background: var(--verde);
+  color: #fff;
+  box-shadow:
+    10px 14px 26px rgb(34 179 94 / 0.35),
+    inset -6px -8px 14px rgb(8 80 38 / 0.35),
+    inset 6px 6px 12px rgb(170 245 200 / 0.55);
+}
+
+.clay-dark {
+  background: var(--oscuro);
+  color: #fff;
+  box-shadow:
+    12px 14px 28px rgb(var(--sombra) / 0.35),
+    inset -6px -8px 14px rgb(0 0 0 / 0.4),
+    inset 6px 6px 12px rgb(255 255 255 / 0.14);
+}
+
+/* Hundido: se usa cuando algo está seleccionado (servicio agregado, filtro activo). */
+.clay-pressed {
+  background: var(--hundido);
+  box-shadow:
+    inset 7px 7px 14px rgb(var(--sombra) / 0.18),
+    inset -7px -7px 14px rgb(var(--luz) / 0.85);
+}
+
+/* Pozo hundido para enmarcar fotos. */
+.clay-well {
+  border-radius: 24px;
+  padding: 8px;
+  background: var(--hundido);
+  box-shadow:
+    inset 6px 6px 12px rgb(var(--sombra) / 0.16),
+    inset -6px -6px 12px rgb(var(--luz) / 0.8);
+}
+
+/* Etiquetas (no se tocan): hundidas con texto rojo, para no confundirse con botones. */
+.clay-chip {
+  background: var(--hundido);
+  color: var(--accion);
+  box-shadow:
+    inset 3px 3px 6px rgb(var(--sombra) / 0.16),
+    inset -3px -3px 6px rgb(var(--luz) / 0.85);
+}
+
+.clay-btn {
+  border-radius: 999px;
+  font-weight: 700;
+  transition:
+    transform 160ms ease,
+    box-shadow 200ms ease,
+    background-color 300ms ease;
+}
+.clay-btn:hover,
+.clay-lift:hover {
+  transform: translateY(-2px);
+}
+/* Como .clay-btn pero sin forzar la forma de píldora (para tarjetas y fotos). */
+.clay-lift {
+  transition: transform 160ms ease;
+}
+.clay-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+.clay-btn:focus-visible,
+.clay-lift:focus-visible,
+.clay-page a:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 3px;
+}
+
+/* Fila de filtros con scroll horizontal: margen extra para que no se corten las sombras. */
+.clay-scroll-row {
+  margin-inline: -1rem;
+  padding: 0.5rem 1rem 1.25rem;
+  scrollbar-width: none;
+}
+.clay-scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes clay-pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.clay-pop {
+  animation: clay-pop 320ms cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clay-btn,
+  .clay-lift,
+  .clay-pop {
+    transition: none;
+    animation: none;
+  }
+  .clay-btn:hover,
+  .clay-lift:hover,
+  .clay-btn:active {
+    transform: none;
+  }
 }

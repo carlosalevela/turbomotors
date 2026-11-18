@@ -25,4 +25,4 @@ vercel deploy --prod
 
 ## Contacto
 
-WhatsApp y mecánico (David Palacios) en `src/config/shopInfo.js`.
+WhatsApp, dirección y horario en `src/config/shopInfo.js`.
