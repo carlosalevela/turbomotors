@@ -9,6 +9,12 @@ import aceitesMotul from '../assets/videos/7708418755356904725.jpg'
 import barrasHorquilla from '../assets/videos/7706638674083007764.jpg'
 import diagnosticoMultimetro from '../assets/videos/7699208888242982165.jpg'
 
+// true: los videos se reproducen dentro del sitio (reproductor de TikTok).
+// false: al tocar un video se abre directo en TikTok (en celular, en la app).
+// Está en false porque TikTok no deja insertar estas publicaciones. Para activarlo: en la app de TikTok,
+// Configuración y privacidad → Privacidad → "Insertar publicaciones" → activar; luego poner true aquí.
+export const TIKTOK_EMBED_ENABLED = false
+
 export const TIKTOK_VIDEOS = [
   { id: '7700710597192584468', kind: 'video', title: 'Cambio de aceite con Yamazuki 20W-50', duration: '0:29', thumb: cambioAceiteYamazuki },
   { id: '7708418755356904725', kind: 'fotos', title: 'Aceites Motul en el taller', thumb: aceitesMotul },

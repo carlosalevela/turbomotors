@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { SHOP_INFO } from '../config/shopInfo'
-import { TIKTOK_VIDEOS } from '../data/videos'
+import { TIKTOK_EMBED_ENABLED, TIKTOK_VIDEOS } from '../data/videos'
+
+const postUrl = (v) => `${SHOP_INFO.tiktokUrl}/${v.kind === 'fotos' ? 'photo' : 'video'}/${v.id}`
 
 function TikTokIcon({ className = 'h-5 w-5' }) {
   return (
@@ -57,7 +59,7 @@ function VideoPlayer({ video, onClose }) {
         </div>
         {/* Respaldo por si el reproductor de TikTok no carga: abre la publicación en TikTok. */}
         <a
-          href={`${SHOP_INFO.tiktokUrl}/${video.kind === 'fotos' ? 'photo' : 'video'}/${video.id}`}
+          href={postUrl(video)}
           target="_blank"
           rel="noopener noreferrer"
           className="clay clay-btn mt-3 flex items-center justify-center gap-2 px-5 py-3 text-sm"
@@ -73,6 +75,7 @@ function VideoPlayer({ video, onClose }) {
 export default function TikTokSection() {
   const [playing, setPlaying] = useState(null)
   const profileUrl = SHOP_INFO.tiktokUrl
+  const CardTag = TIKTOK_EMBED_ENABLED ? 'button' : 'a'
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12">
@@ -105,12 +108,13 @@ export default function TikTokSection() {
         {TIKTOK_VIDEOS.length > 0 ? (
           <div className="clay-scroll-row flex snap-x scroll-px-4 gap-3 overflow-x-auto sm:gap-4">
             {TIKTOK_VIDEOS.map((v) => (
-              <button
+              <CardTag
                 key={v.id}
-                type="button"
-                onClick={() => setPlaying(v)}
-                className="clay-well clay-lift group relative w-[9.5rem] shrink-0 snap-start text-left sm:w-44"
-                aria-label={`Ver video: ${v.title}`}
+                {...(TIKTOK_EMBED_ENABLED
+                  ? { type: 'button', onClick: () => setPlaying(v) }
+                  : { href: postUrl(v), target: '_blank', rel: 'noopener noreferrer' })}
+                className="clay-well clay-lift group relative block w-[9.5rem] shrink-0 snap-start text-left sm:w-44"
+                aria-label={`Ver en TikTok: ${v.title}`}
               >
                 {v.thumb ? (
                   <img src={v.thumb} alt="" loading="lazy" className="aspect-[9/16] w-full rounded-[18px] object-cover" />
@@ -131,7 +135,7 @@ export default function TikTokSection() {
                     <span className="line-clamp-2 text-sm font-bold text-white">{v.title}</span>
                   </span>
                 </span>
-              </button>
+              </CardTag>
             ))}
           </div>
         ) : (
