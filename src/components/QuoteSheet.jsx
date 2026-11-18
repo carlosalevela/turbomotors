@@ -6,28 +6,40 @@ import { buildWhatsAppUrl } from '../config/shopInfo'
 import { ItemThumb } from './QuoteTicket'
 import { WhatsAppIcon } from './ui'
 
-// Barra flotante: aparece cuando hay algo en la cotización. En celular va encima de la barra de navegación.
-export function QuoteBar() {
-  const { items, open, isOpen } = useQuote()
-  if (items.length === 0 || isOpen) return null
+// Botón de cotización del encabezado: aparece cuando hay algo elegido y abre el panel.
+// El número rebota cada vez que cambia, para que se note que se agregó algo.
+export function QuoteHeaderButton() {
+  const { items, open } = useQuote()
+  if (items.length === 0) return null
 
   return (
-    <div className="fixed right-3 bottom-24 left-3 z-40 sm:right-6 sm:bottom-6 sm:left-auto">
-      <button
-        type="button"
-        onClick={open}
-        className="clay clay-btn clay-pop flex w-full items-center gap-3 rounded-full py-2 pr-2 pl-5 text-left sm:w-auto"
+    <button
+      type="button"
+      onClick={open}
+      aria-label={`Ver cotización (${items.length} ${items.length === 1 ? 'elegido' : 'elegidos'})`}
+      title="Ver cotización"
+      className="clay-btn clay-red clay-pop relative flex h-11 w-11 shrink-0 items-center justify-center"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5.5 w-5.5 stroke-current"
+        fill="none"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
       >
-        <span className="text-sm font-bold">
-          {items.length} {items.length === 1 ? 'elegido' : 'elegidos'}
-          <span className="clay-muted font-medium"> · Ver cotización</span>
-        </span>
-        <span className="clay-green ml-auto flex items-center gap-2 rounded-full px-5 py-3 text-sm">
-          <WhatsAppIcon className="h-4 w-4" />
-          Enviar
-        </span>
-      </button>
-    </div>
+        <path d="M3 4h2l2.2 10.1a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.1L20.5 8H6" />
+        <circle cx="9.5" cy="19.5" r="1.3" />
+        <circle cx="17" cy="19.5" r="1.3" />
+      </svg>
+      <span
+        key={items.length}
+        className="clay-pop absolute -top-1.5 -right-1.5 flex h-5.5 min-w-5.5 items-center justify-center rounded-full bg-white px-1 text-xs font-extrabold text-[var(--accion)] shadow-[0_2px_6px_rgb(120_40_32/0.35)]"
+      >
+        {items.length}
+      </span>
+    </button>
   )
 }
 

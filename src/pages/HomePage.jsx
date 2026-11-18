@@ -4,7 +4,8 @@ import { SHELF_PHOTO } from '../data/products'
 import { buildWhatsAppUrl } from '../config/shopInfo'
 import ServiceCard from '../components/ServiceCard'
 import QuoteTicket from '../components/QuoteTicket'
-import { MoreLink } from '../components/ui'
+import TikTokSection from '../components/TikTokSection'
+import { MoreLink, WhatsAppIcon } from '../components/ui'
 import usePageMeta from '../hooks/usePageMeta'
 
 // Los más pedidos: aceite y filtro, pastillas, kit de arrastre, mantenimiento general.
@@ -20,29 +21,33 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-10 pb-16 lg:grid-cols-[1.1fr_1fr] lg:pt-20">
+      <section className="mx-auto grid max-w-6xl items-center gap-8 px-4 pt-6 pb-16 sm:gap-10 sm:pt-10 lg:grid-cols-[1.1fr_1fr] lg:pt-20">
         <div>
           <p className="clay-chip inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-wide uppercase">
             Mecánica de motos · Pasto, Nariño
           </p>
-          <h1 className="clay-display mt-6 text-5xl sm:text-6xl lg:text-7xl">
-            Tu moto, en <span className="clay-accion-text">buenas manos</span>.
+          <h1 className="clay-display mt-4 text-[2.6rem] sm:mt-6 sm:text-6xl lg:text-7xl">
+            Tu moto, en <span className="clay-accion-text whitespace-nowrap">buenas manos</span>.
           </h1>
-          <p className="clay-muted mt-6 max-w-md text-lg">
+          {/* En celular va un texto más corto: la etiqueta de arriba ya dice "mecánica de motos en Pasto". */}
+          <p className="clay-muted mt-4 max-w-md text-lg sm:hidden">Elige lo que necesita tu moto y te cotizamos por WhatsApp.</p>
+          <p className="clay-muted mt-6 hidden max-w-md text-lg sm:block">
             Taller de mecánica de motos en Pasto. Elige lo que necesita tu moto y te respondemos por WhatsApp con el
             precio.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/servicios" className="clay-btn clay-red px-7 py-4">
+          <div className="mt-6 flex gap-3 sm:mt-8">
+            <Link to="/servicios" className="clay-btn clay-red px-6 py-3.5 sm:px-7 sm:py-4">
               Ver servicios
             </Link>
             <a
               href={buildWhatsAppUrl('Hola, quiero cotizar un servicio para mi moto')}
               target="_blank"
               rel="noopener noreferrer"
-              className="clay-btn clay px-7 py-4"
+              className="clay-btn clay flex items-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4"
             >
-              Escribir por WhatsApp
+              <WhatsAppIcon className="h-4.5 w-4.5 text-[var(--verde)]" />
+              <span className="sm:hidden">WhatsApp</span>
+              <span className="hidden sm:inline">Escribir por WhatsApp</span>
             </a>
           </div>
         </div>
@@ -121,6 +126,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <TikTokSection />
     </>
   )
 }

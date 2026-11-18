@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { SHOP_INFO, buildWhatsAppUrl } from '../config/shopInfo'
-import logo from '../assets/logo.jpg'
-import QuoteSheet, { QuoteBar } from './QuoteSheet'
+import logo from '../assets/logo.svg'
+import QuoteSheet, { QuoteHeaderButton } from './QuoteSheet'
+import Footer from './Footer'
 
 // icon: trazo SVG (24x24) para la barra inferior del celular.
 const NAV = [
@@ -62,20 +62,6 @@ function MobileTabBar() {
   )
 }
 
-function SocialLink({ href, label, children }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className="clay clay-btn flex h-10 w-10 items-center justify-center"
-    >
-      {children}
-    </a>
-  )
-}
-
 export default function Layout() {
   const { pathname } = useLocation()
 
@@ -87,20 +73,23 @@ export default function Layout() {
     `clay-btn px-4 py-2 text-sm ${isActive ? 'clay-pressed clay-accion-text' : 'hover:bg-white/60'}`
 
   return (
-    <div className="clay-page flex flex-col pb-32 sm:pb-24">
+    <div className="clay-page flex flex-col pb-28 sm:pb-12">
       <header className="sticky top-3 z-40 px-3">
         <div className="clay mx-auto flex max-w-6xl items-center justify-between gap-2 rounded-full py-2 pr-2 pl-2 sm:pl-3">
           <Link to="/" className="flex shrink-0 items-center gap-2">
             <img src={logo} alt="" className="h-9 w-9 rounded-full object-cover" />
             <span className="clay-display text-lg">Turbo Motors</span>
           </Link>
-          <nav className="hidden gap-1 font-semibold sm:flex">
-            {NAV.filter((item) => !item.mobileOnly).map((item) => (
-              <NavLink key={item.to} to={item.to} className={navClass}>
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
+          <div className="flex items-center gap-1">
+            <nav className="hidden gap-1 font-semibold sm:flex">
+              {NAV.filter((item) => !item.mobileOnly).map((item) => (
+                <NavLink key={item.to} to={item.to} className={navClass}>
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+            <QuoteHeaderButton />
+          </div>
         </div>
       </header>
 
@@ -108,67 +97,8 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="mx-auto mt-20 w-full max-w-6xl px-4 text-sm">
-        <div className="clay grid gap-8 rounded-[32px] p-6 sm:grid-cols-3 sm:p-8">
-          <div>
-            <div className="flex items-center gap-2">
-              <img src={logo} alt="" className="h-9 w-9 rounded-full object-cover" />
-              <span className="clay-display text-xl">Turbo Motors</span>
-            </div>
-            <p className="clay-muted mt-2">Mecánica de motos y venta de aceites en Pasto, Nariño.</p>
-            <div className="mt-4 flex gap-3">
-              <SocialLink href={SHOP_INFO.instagramUrl} label="Instagram de Turbo Motors">
-                <svg viewBox="0 0 24 24" className="h-4.5 w-4.5 stroke-current" fill="none" strokeWidth="2">
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-                  <circle cx="12" cy="12" r="4" />
-                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-                </svg>
-              </SocialLink>
-              <SocialLink href={SHOP_INFO.tiktokUrl} label="TikTok de Turbo Motors">
-                <svg viewBox="0 0 24 24" className="h-4.5 w-4.5 fill-current">
-                  <path d="M16.5 3c.4 2.1 1.8 3.6 4 3.9v2.6c-1.4 0-2.7-.4-4-1.2v6.4c0 3.1-2.5 5.3-5.3 5.3S5.9 17.8 5.9 14.7c0-3 2.4-5.3 5.4-5.3.4 0 .8 0 1.1.1v2.7c-.3-.1-.7-.2-1.1-.2-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.8-1.1 2.8-2.7V3h2.4Z" />
-                </svg>
-              </SocialLink>
-            </div>
-          </div>
+      <Footer />
 
-          <div>
-            <p className="font-bold">Secciones</p>
-            <ul className="clay-muted mt-3 grid grid-cols-2 gap-2 sm:grid-cols-1">
-              {NAV.filter((item) => !item.mobileOnly).map((item) => (
-                <li key={item.to}>
-                  <Link to={item.to} className="hover:text-[var(--accion)]">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="font-bold">Contacto</p>
-            <ul className="clay-muted mt-3 flex flex-col gap-2">
-              <li>{SHOP_INFO.address}</li>
-              <li>{SHOP_INFO.hours}</li>
-              <li>
-                <a
-                  href={buildWhatsAppUrl('Hola, quiero más información')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-[var(--verde)] hover:underline"
-                >
-                  Escribir por WhatsApp
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <p className="clay-muted py-6 text-center text-xs">
-          © {new Date().getFullYear()} {SHOP_INFO.name}. Todos los derechos reservados.
-        </p>
-      </footer>
-
-      <QuoteBar />
       <QuoteSheet />
       <MobileTabBar />
     </div>

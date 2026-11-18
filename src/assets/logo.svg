@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 0 638 638" role="img" aria-label="Turbo Motors">
+  <defs>
+    <!-- plateado: brillo arriba, gris abajo -->
+    <linearGradient id="tm-silver" x1="0" y1="235" x2="0" y2="398" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#f1f1f1"/>
+      <stop offset="1" stop-color="#a9a9a9"/>
+    </linearGradient>
+    <!-- bisel de los palos: cara izquierda oscura, cara derecha brillante -->
+    <linearGradient id="tm-bevel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7d7d7d"/>
+      <stop offset="0.38" stop-color="#d9d9d9"/>
+      <stop offset="0.55" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#cfcfcf"/>
+    </linearGradient>
+    <!-- sombra de la pierna derecha de la M -->
+    <linearGradient id="tm-shade" x1="448" y1="0" x2="604" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.45"/>
+    </linearGradient>
+    <!-- franja roja que se desvanece hacia la derecha -->
+    <linearGradient id="tm-red" x1="60" y1="0" x2="345" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8121a"/>
+      <stop offset="0.5" stop-color="#d32a2a"/>
+      <stop offset="1" stop-color="#e04040" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="tm-edge" x1="0" y1="260" x2="0" y2="392" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e3342f"/>
+      <stop offset="1" stop-color="#8e1414"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="325" cy="319" r="318" fill="#050505"/>
+
+  <!-- barra superior + M -->
+  <path fill="url(#tm-silver)" d="M76 235 L368 235 L419 300 L514 236 L604 236 L560 266 L502 398 L448 398 L492 305 L401 367 L337 285 L54 285 Z"/>
+  <path fill="url(#tm-shade)" d="M514 236 L604 236 L560 266 L502 398 L448 398 L492 305 Z"/>
+  <path fill="url(#tm-red)" d="M76 235 L360 235 L360 276 L58 276 Z"/>
+
+  <!-- palos -->
+  <path fill="url(#tm-bevel)" d="M163 296 L233 296 L187 398 L117 398 Z"/>
+  <path fill="url(#tm-bevel)" d="M279 296 L339 296 L293 398 L233 398 Z"/>
+
+  <!-- filo rojo derecho -->
+  <path fill="url(#tm-edge)" d="M573 264 L584 259 L531 382 L521 392 Z"/>
+</svg>
